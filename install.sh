@@ -9,7 +9,6 @@ fi
 if [ ! -d ~/fspotcloud ]; then
 	hg clone https://java.fspotcloud.googlecode.com/hg/ fspotcloud
 fi
+source env.sh
 cd ~/fspotcloud
-export PATH=$HOME/apache-maven-3.0.3/bin:$PATH
-echo $PATH
 mvn
