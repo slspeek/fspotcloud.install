@@ -9,6 +9,8 @@ fi
 if [ ! -d ~/fspotcloud ]; then
 	hg clone https://java.fspotcloud.googlecode.com/hg/ fspotcloud
 fi
-source env.sh
+cd fspotcloud-install
+. ./env.sh
 cd ~/fspotcloud
+hg update raster
 mvn
