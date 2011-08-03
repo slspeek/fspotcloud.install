@@ -12,5 +12,4 @@ fi
 cd fspotcloud-install
 . ./env.sh
 cd ~/fspotcloud
-hg update raster
 mvn
