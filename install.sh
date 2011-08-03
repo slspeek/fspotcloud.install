@@ -1,5 +1,5 @@
 cd ~
-sudo apt-get update && sudo apt-get install curl sun-java6-jdk python2.6-dev build-essential imagemagick sqlitebrowser mercurial iceweasel
+sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk python2.6-dev build-essential imagemagick sqlitebrowser mercurial iceweasel
 if [ ! -d ~/appengine-java-sdk-1.5.0 ]; then
 	wget http://googleappengine.googlecode.com/files/appengine-java-sdk-1.5.0.zip && unzip appengine-java-sdk-1.5.0.zip
 fi
