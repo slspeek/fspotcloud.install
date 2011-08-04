@@ -9,7 +9,7 @@ fi
 if [ ! -d ~/fspotcloud ]; then
 	hg clone https://java.fspotcloud.googlecode.com/hg/ fspotcloud
 fi
-cd fspotcloud-install
+cd fspotcloud.install
 . ./env.sh
 cd ~/fspotcloud
 mvn
