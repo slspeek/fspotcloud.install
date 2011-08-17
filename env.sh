@@ -1,7 +1,11 @@
+# The first two variables are user-editable
+export YOUR_SECRET=SECRET
+export GAE_APPLICATION_ID=jfspotcloud
+
+
 export PATH=$HOME/apache-maven-3.0.3/bin:$PATH
 export CDPATH=~/fspotcloud
-export YOUR_SECRET=SECRET
-export YOUR_APPENGINE_DEPLOYMENT=jfspotcloud.appspot.com
+export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 alias build='cd ~/fspotcloud && time (telnet localhost 4444 ;(cd war && mvn gae:stop) ;mvn clean ; mvn)'
 alias buildserver='cd server && mvn clean install && cd war && mvn gae:stop clean verify'
 alias buildpeer='cd peer && mvn clean install && cd war && mvn gae:stop clean verify'
