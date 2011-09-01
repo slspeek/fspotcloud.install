@@ -1,5 +1,5 @@
 # The first two variables are user-editable
-export YOUR_SECRET=Melquit9
+export YOUR_SECRET=SECRET
 export GAE_APPLICATION_ID=jfspotcloud
 
 
