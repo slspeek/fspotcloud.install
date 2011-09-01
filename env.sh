@@ -1,5 +1,5 @@
 # The first two variables are user-editable
-export YOUR_SECRET=SECRET
+export YOUR_SECRET=Melquit9
 export GAE_APPLICATION_ID=jfspotcloud
 
 
@@ -15,3 +15,4 @@ alias localpeer='cd peer/ && java -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_S
 alias peer='cd ~/fspotcloud/peer/ && java -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=$YOUR_APPENGINE_DEPLOYMENT -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 alias runlocal='cd ~/fspotcloud && cd war && mvn gae:stop gae:run'
 alias stopall='(cd ~/fspotcloud/war && mvn gae:stop) && telnet localhost 4444'
+alias resume='mvn install -rf :'

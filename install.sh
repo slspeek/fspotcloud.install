@@ -1,5 +1,5 @@
 cd ~
-sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz f-spot
+sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz f-spot exif
 update-alternatives --set java  /usr/lib/jvm/java-6-sun/jre/bin/java 
 if [ ! -d ~/appengine-java-sdk-1.5.0 ]; then
 	wget http://googleappengine.googlecode.com/files/appengine-java-sdk-1.5.0.zip && unzip appengine-java-sdk-1.5.0.zip
