@@ -14,4 +14,5 @@ fi
 cd fspotcloud.install
 source ./env.sh
 cd ~/fspotcloud
+hg pull -u
 mvn
