@@ -16,6 +16,7 @@ alias peer='cd ~/fspotcloud/peer/ && java -Djava.util.logging.config.file=target
 alias runlocal='cd ~/fspotcloud && cd war && mvn gae:stop gae:run'
 alias stopall='(cd ~/fspotcloud/war && mvn gae:stop) && telnet localhost 4444'
 alias verify='(stop; cd war; mvn clean verify -Dnodelete)'
+alias gwt='(cd client &&  mvn gwt:run)'
 
 function resume() {
    mvn install -rf :$1;
