@@ -1,3 +1,4 @@
+#!/bin/bash
 GAE_VERSION=1.5.3
 cd ~
 sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz f-spot exif
