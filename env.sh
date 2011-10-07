@@ -8,6 +8,7 @@ export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 alias stopall='(cd war && mvn gae:stop); telnet localhost 4444'
 alias build='stopall; cd ~/fspotcloud && time (mvn -o clean ; mvn -o -Dnodelete)'
+alias sbuild='stopall; cd ~/fspotcloud && time (mvn -o clean ; mvn -o -Dmaven.test.error.ignore -Dmaven.test.failure.ignore -Dnodelete)'
 alias rbuild='stopall; cd ~/fspotcloud && time (mvn clean ; mvn)'
 alias buildserver='cd server && mvn clean install && cd war && mvn gae:stop clean verify'
 alias buildpeer='cd peer && mvn clean install && cd war && mvn gae:stop clean verify'
