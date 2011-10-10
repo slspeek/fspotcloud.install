@@ -6,7 +6,7 @@ export GAE_APPLICATION_ID=jfspotcloud
 export PATH=$HOME/apache-maven-3.0.3/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
-alias stopall='(cd war && mvn gae:stop); telnet localhost 4444'
+alias stopall='(cd war && mvn gae:stop);(cd bot-dispatch/integration-test && mvn gae:stop); telnet localhost 4444'
 alias build='stopall; cd ~/fspotcloud && time (mvn -o clean ; mvn -o -Dnodelete)'
 alias sbuild='stopall; cd ~/fspotcloud && time (mvn -o clean ; mvn -o -Dmaven.test.error.ignore -Dmaven.test.failure.ignore -Dnodelete)'
 alias rbuild='stopall; cd ~/fspotcloud && time (mvn clean ; mvn)'
@@ -22,6 +22,7 @@ alias verify='(stopall; cd war; mvn clean verify -Dnodelete)'
 alias gwt='(cd client &&  mvn gwt:run)'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
 alias reclipse='cd ~/fspotcloud && mvn eclipse:clean google:clean eclipse:eclipse google:eclipse'
+alias mci='mvn -o clean install'
 
 function resume() {
    mvn install -rf :$1;
