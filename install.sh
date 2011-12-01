@@ -1,5 +1,5 @@
 #!/bin/bash
-GAE_VERSION=1.5.3
+GAE_VERSION=1.6.0
 cd ~
 sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz exif
 sudo update-alternatives --set java  /usr/lib/jvm/java-6-sun/jre/bin/java 
