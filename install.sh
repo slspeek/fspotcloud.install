@@ -1,6 +1,9 @@
 #!/bin/bash
 GAE_VERSION=1.6.0
 cd ~
+if [ ! -d gradle-1.0-milestone-6 ]; then
+  wget http://repo.gradle.org/gradle/distributions/gradle-1.0-milestone-6-all.zip && unzip gradle-1.0-milestone-6-all.zip
+fi
 sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz exif
 sudo update-alternatives --set java  /usr/lib/jvm/java-6-sun/jre/bin/java 
 if [ ! -d ~/appengine-java-sdk-$GAE_VERSION ]; then
