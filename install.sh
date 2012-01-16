@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 GAE_VERSION=1.6.0
 cd ~
 if [ ! -d gradle-1.0-milestone-6 ]; then
@@ -15,8 +16,20 @@ fi
 if [ ! -d ~/fspotcloud ]; then
 	hg clone https://java.fspotcloud.googlecode.com/hg/ fspotcloud
 fi
+if [ ! -d ~/botdispatch ]; then
+	hg clone https://botdispatch.googlecode.com/hg/ botdispatch
+fi
+if [ ! -d ~/taskqueuedispatch ]; then
+	hg clone https://taskqueuedispatch.googlecode.com/hg/ taskqueuedispatch
+fi
 cd fspotcloud.install
 source ./env.sh
 cd ~/fspotcloud
 hg pull -u
-mvn
+mvn install
+cd ~/botdispatch
+hg pull -u
+mvn install
+cd ~/taskqueuedispatch
+hg pull -u
+mvn install
