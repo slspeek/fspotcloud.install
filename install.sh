@@ -24,12 +24,12 @@ if [ ! -d ~/taskqueuedispatch ]; then
 fi
 cd fspotcloud.install
 source ./env.sh
-cd ~/fspotcloud
-hg pull -u
-mvn install
 cd ~/botdispatch
 hg pull -u
 mvn install
 cd ~/taskqueuedispatch
+hg pull -u
+mvn install
+cd ~/fspotcloud
 hg pull -u
 mvn install
