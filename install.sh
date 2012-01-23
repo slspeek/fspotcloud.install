@@ -32,7 +32,5 @@ cd ~/taskqueuedispatch
 hg pull -u
 mvn install
 cd ~/fspotcloud
-
 hg pull -u
-hg update -C jpa-migration
 mvn install
