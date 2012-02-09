@@ -26,7 +26,6 @@ cd fspotcloud.install
 source ./env.sh
 cd ~/botdispatch
 hg pull -u
-hg update -C jpa-experiment
 mvn install
 cd ~/taskqueuedispatch
 hg pull -u
