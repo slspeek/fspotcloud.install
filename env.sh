@@ -27,7 +27,7 @@ alias reclipse='mvn eclipse:clean google:clean eclipse:eclipse google:eclipse'
 alias mci='mvn clean install'
 alias runinstaller='java -jar ~/fspotcloud/installer/target/installer-standard.jar'
 alias rununinstaller='java -jar ~/FSpotCloud/Uninstaller/uninstaller.jar'
-alias cbuild='rm -rf $HOME/.m2/repository/fspotcloud/ cd taskqueuedispatch && stopall;mci && cd && cd botdispatch && mci && build'
+alias cbuild='rm -rf $HOME/.m2/repository/fspotcloud/ && cd ~/taskqueuedispatch && stopall;mci && cd && cd botdispatch && mci && build'
 function clean() {
   (cd $1 && mvn clean);
 }
