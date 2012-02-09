@@ -19,14 +19,15 @@ alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/pe
 alias localbot='cd bot-dispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -jar target/test-bot-*-jar-with-dependencies.jar '
 alias peer='cd ~/fspotcloud/peer/ && java -Dpause=30 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=$YOUR_APPENGINE_DEPLOYMENT -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 alias peerprodlocal='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
-alias runlocal='cd ~/fspotcloud && cd war && mvn gae:stop gae:run'
-alias verify='(stopall; cd war; mvn clean verify -Dnodelete)'
+alias runlocal='cd ~/fspotcloud && cd gae-war && mvn gae:stop gae:run'
+alias verify='(stopall; cd gae-war; mvn clean verify -Dnodelete)'
 alias gwt='(cd client &&  mvn gwt:run)'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
 alias reclipse='mvn eclipse:clean google:clean eclipse:eclipse google:eclipse'
 alias mci='mvn clean install'
 alias runinstaller='java -jar ~/fspotcloud/installer/target/installer-standard.jar'
 alias rununinstaller='java -jar ~/FSpotCloud/Uninstaller/uninstaller.jar'
+alias cbuild='rm -rf $HOME/.m2/repository/fspotcloud/ cd taskqueuedispatch && stopall;mci && cd && cd botdispatch && mci && build'
 function clean() {
   (cd $1 && mvn clean);
 }
