@@ -2,8 +2,8 @@
 set -e
 GAE_VERSION=1.6.0
 cd ~
-if [ ! -d gradle-1.0-milestone-6 ]; then
-  wget http://repo.gradle.org/gradle/distributions/gradle-1.0-milestone-6-all.zip && unzip gradle-1.0-milestone-6-all.zip
+if [ ! -d gradle-1.0-milestone-7 ]; then
+  wget http://repo.gradle.org/gradle/distributions/gradle-1.0-milestone-7-all.zip && unzip gradle-1.0-milestone-7-all.zip
 fi
 sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz exif
 sudo update-alternatives --set java  /usr/lib/jvm/java-6-sun/jre/bin/java 
@@ -12,6 +12,9 @@ if [ ! -d ~/appengine-java-sdk-$GAE_VERSION ]; then
 fi
 if [ ! -d ~/apache-maven-3.0.3 ]; then
 	curl http://apache.osuosl.org//maven/binaries/apache-maven-3.0.3-bin.tar.gz|tar -C ~ -xvzf -
+fi
+if [ ! -d ~/fspotcloud.simplejpadao ]; then
+	hg clone https://simplejpadao.fspotcloud.googlecode.com/hg/ fspotcloud.simplejpadao
 fi
 if [ ! -d ~/fspotcloud ]; then
 	hg clone https://java.fspotcloud.googlecode.com/hg/ fspotcloud
@@ -24,12 +27,16 @@ if [ ! -d ~/taskqueuedispatch ]; then
 fi
 cd fspotcloud.install
 source ./env.sh
+cd ~/fspotcloud.simplejpadao
+hg pull -u
+mvn clean install
 cd ~/botdispatch
 hg pull -u
-mvn install
+mvn clean install
 cd ~/taskqueuedispatch
 hg pull -u
-mvn install
+mvn clean install
 cd ~/fspotcloud
 hg pull -u
-mvn install
+mvn clean install
+
