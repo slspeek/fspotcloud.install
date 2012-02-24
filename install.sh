@@ -32,8 +32,8 @@ hg pull -u
 mvn clean install
 cd ~/botdispatch
 hg pull -u
-mvn clean install
 cd ~/taskqueuedispatch
+mvn -Dmaven.test.error.ignore -Dmaven.test.failure.ignore install
 hg pull -u
 mvn clean install
 cd ~/fspotcloud
