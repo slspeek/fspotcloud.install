@@ -3,7 +3,7 @@ export YOUR_SECRET=SECRET
 export GAE_APPLICATION_ID=jfspotcloud
 
 
-export PATH=$HOME/gradle-1.0-milestone-7/bin:$HOME/apache-maven-3.0.3/bin:$PATH
+export PATH=$HOME/gradle-1.0-milestone-7/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 alias status='hg status && hg outgoing && hg identify'
