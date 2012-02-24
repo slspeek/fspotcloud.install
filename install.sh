@@ -10,8 +10,8 @@ sudo update-alternatives --set java  /usr/lib/jvm/java-6-sun/jre/bin/java
 if [ ! -d ~/appengine-java-sdk-$GAE_VERSION ]; then
 	wget http://googleappengine.googlecode.com/files/appengine-java-sdk-$GAE_VERSION.zip && unzip appengine-java-sdk-$GAE_VERSION.zip
 fi
-if [ ! -d ~/apache-maven-3.0.3 ]; then
-	curl http://apache.osuosl.org//maven/binaries/apache-maven-3.0.3-bin.tar.gz|tar -C ~ -xvzf -
+if [ ! -d ~/apache-maven-3.0.4 ]; then
+	curl http://apache.osuosl.org//maven/binaries/apache-maven-3.0.4-bin.tar.gz|tar -C ~ -xvzf -
 fi
 if [ ! -d ~/fspotcloud.simplejpadao ]; then
 	hg clone https://simplejpadao.fspotcloud.googlecode.com/hg/ fspotcloud.simplejpadao
