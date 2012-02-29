@@ -29,14 +29,18 @@ cd fspotcloud.install
 source ./env.sh
 cd ~/fspotcloud.simplejpadao
 hg pull -u
-mvn clean install
 cd ~/botdispatch
 hg pull -u
-mvn clean install
 cd ~/taskqueuedispatch
 hg pull -u
-mvn clean install
 cd ~/fspotcloud
 hg pull -u
-mvn -Dmaven.test.error.ignore -Dmaven.test.failure.ignore -Dfspotcloud.test.webdriver=fire clean install
+cd ~/fspotcloud.simplejpadao/
+mvn clean install
+cd ~/taskqueuedispatch/
+mvn clean install
+cd ~/botdispatch/
+mvn clean install
+cd ~/fspotcloud
+mvn -Dmaven.test.error.ignore=false -Dmaven.test.failure.ignore=false -Dfspotcloud.test.webdriver=fire clean install
 
