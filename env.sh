@@ -31,6 +31,7 @@ alias mci='mvn clean install'
 alias runinstaller='java -jar ~/fspotcloud/installer/target/installer-standard.jar'
 alias rununinstaller='java -jar ~/FSpotCloud/Uninstaller/uninstaller.jar'
 alias cbuild='rm -rf $HOME/.m2/repository/fspotcloud/ && cd ~/taskqueuedispatch && stopall;mci && cd && cd botdispatch && mci && build'
+alias sim='cd ~/fspotcloud.simplejpadao'
 function clean() {
   (cd $1 && mvn clean);
 }
