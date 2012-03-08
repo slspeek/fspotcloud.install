@@ -3,15 +3,16 @@ export YOUR_SECRET=SECRET
 export GAE_APPLICATION_ID=jfspotcloud
 
 
-export PATH=$HOME/gradle-1.0-milestone-7/bin:$HOME/apache-maven-3.0.4/bin:$PATH
+export PATH=$HOME/gradle-1.0-milestone-6/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
+alias g='gradle --daemon '
 alias vienv='vi ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
 alias allstat='cd ~/fspotcloud.install && status ;cd ~/fspotcloud && status ; cd ~/botdispatch && status;cd ~/fspotcloud.simplejpadao/ && status ; cd ~/taskqueuedispatch/ && status'
-alias cleanall='cd ~/fspotcloud && mvn clean ; find -type d \( -name target -or -name runtime -or -name MODELJPA \) -exec rm -rvf {} \;'
+alias cleanall='cd ~/fspotcloud && mvn clean ; find -type d \( -name target -or -name runtime -or -name MODELJPA -or -name te-report \) -exec rm -rvf {} \;'
 alias stopall='(cd ~/taskqueuedispatch/integration && mvn gae:stop) && (cd ~/fspotcloud/gae-war && mvn gae:stop);(cd ~/botdispatch/integration-test && mvn gae:stop); telnet localhost 4444'
-alias build='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false)'
+alias build='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false install testability:testability)'
 alias sbuild='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dmaven.test.error.ignore -Dmaven.test.failure.ignore -Dnodelete -Dfspotcloud.test.webdriver=fire )'
 alias rbuild='stopall; cd ~/fspotcloud && time (cleanall ; mvn)'
 alias crepo='rm -rf ~/.m2/repository/'
