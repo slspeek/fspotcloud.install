@@ -6,11 +6,12 @@ export GAE_APPLICATION_ID=jfspotcloud
 export PATH=$HOME/gradle-1.0-milestone-6/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
-alias g='gradle --daemon '
+alias vt='x-www-browser build/reports/tests/index.html'
+alias gb='gradle --daemon build'
 alias vienv='vi ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
 alias allstat='cd ~/fspotcloud.install && status ;cd ~/fspotcloud && status ; cd ~/botdispatch && status;cd ~/fspotcloud.simplejpadao/ && status ; cd ~/taskqueuedispatch/ && status'
-alias cleanall='cd ~/fspotcloud && mvn clean ; find -type d \( -name target -or -name runtime -or -name MODELJPA -or -name te-report \) -exec rm -rvf {} \;'
+alias cleanall='cd ~/fspotcloud && mvn clean ; find -type d \( -name bin -or -name target -or -name runtime -or -name MODELJPA -or -name te-report \) -exec rm -rvf {} \;'
 alias stopall='(cd ~/taskqueuedispatch/integration && mvn gae:stop) && (cd ~/fspotcloud/gae-war && mvn gae:stop);(cd ~/botdispatch/integration-test && mvn gae:stop); telnet localhost 4444'
 alias build='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false install testability:testability)'
 alias sbuild='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dmaven.test.error.ignore -Dmaven.test.failure.ignore -Dnodelete -Dfspotcloud.test.webdriver=fire )'
@@ -24,12 +25,13 @@ alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/pe
 alias localpeerj2ee='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/steven/Photos -Dpause=3 -Dendpoint=localhost:8080/j2ee-war -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 alias localbot='cd botdispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -jar target/test-bot-*-jar-with-dependencies.jar '
 alias peer='cd ~/fspotcloud/peer/ && java -Dpause=30 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=$YOUR_APPENGINE_DEPLOYMENT -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
+
 alias peerprodlocal='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 alias runlocal='cd ~/fspotcloud && cd gae-war && mvn gae:stop gae:run'
 alias verify='(stopall; cd gae-war; mvn clean verify -Dnodelete)'
 alias gwt='(cd client &&  mvn gwt:run)'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
-alias reclipse='mvn eclipse:clean google:clean eclipse:eclipse google:eclipse'
+alias reclipse='mvn eclipse:clean eclipse:eclipse' 
 alias mci='mvn clean install'
 alias runinstaller='java -jar ~/fspotcloud/installer/target/installer-standard.jar'
 alias rununinstaller='java -jar ~/FSpotCloud/Uninstaller/uninstaller.jar'
@@ -48,4 +50,11 @@ alias cheapclean='clean war; clean server; clean peer; clean model-api; clean mo
 alias cheapbuild='b rpc && b peer-rpc && b peer && b model && b server && b war'
 function resume() {
    mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false install -rf :$1;
+}
+function gRepl() {
+  find -type f -name build.gradle -exec sed -i -e "s/\"$1\"/libs.$2/g" {} \; ;
+}
+alias gbuild='cd ~/fspotcloud/ && gradle clean :peer:build :server:build :user-service-api:build :user-service-openid:build :user-service-gae:build :e2e-test:build :model-api:build :model-jpa-j2ee:build :model-jpa-gae:build :peer-server-integration:packageTests :server-module-gae:buildNeeded :server-module-j2ee:buildNeeded :client:compileGwt :gae-war:buildNeeded'
+function g() {
+  gradle --daemon -x :client:compileGwt $@;
 }
