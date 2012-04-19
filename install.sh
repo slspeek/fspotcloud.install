@@ -2,8 +2,8 @@
 set -e
 GAE_VERSION=1.6.2
 cd ~
-if [ ! -d gradle-1.0-milestone-7 ]; then
-  wget http://repo.gradle.org/gradle/distributions/gradle-1.0-milestone-7-all.zip && unzip gradle-1.0-milestone-7-all.zip
+if [ ! -d gradle-1.0-milestone-9 ]; then
+  wget http://services.gradle.org/distributions/gradle-1.0-milestone-9-all.zip  && unzip gradle-1.0-milestone-9-all.zip
 fi
 sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz exif
 sudo update-alternatives --set java  /usr/lib/jvm/java-6-sun/jre/bin/java 

@@ -3,16 +3,20 @@ export YOUR_SECRET=SECRET
 export GAE_APPLICATION_ID=jfspotcloud
 
 
-export PATH=$HOME/gradle-1.0-milestone-6/bin:$HOME/apache-maven-3.0.4/bin:$PATH
+export PATH=$HOME/gradle-1.0-milestone-8/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 alias vt='x-www-browser build/reports/tests/index.html'
 alias gb='gradle --daemon build'
+alias gbuildall='stopall ; cd ~/fspotcloud && g clean && g {installer-gae,gae-war}:build && g j2ee-war-noauth:build'
+alias gbuild='cd ~/fspotcloud && chc && g {installer-gae,gae-war}:build && g j2ee-war-noauth:build'
+alias gcb='gradle --daemon clean build'
+alias chc='g -x :client:clean -x :client:cleanCompileGwt clean'
 alias vienv='vi ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
 alias allstat='cd ~/fspotcloud.install && status ;cd ~/fspotcloud && status ; cd ~/botdispatch && status;cd ~/fspotcloud.simplejpadao/ && status ; cd ~/taskqueuedispatch/ && status'
 alias cleanall='cd ~/fspotcloud && mvn clean ; find -type d \( -name bin -or -name target -or -name runtime -or -name MODELJPA -or -name te-report \) -exec rm -rvf {} \;'
-alias stopall='(cd ~/taskqueuedispatch/integration && mvn gae:stop) && (cd ~/fspotcloud/gae-war && mvn gae:stop);(cd ~/botdispatch/integration-test && mvn gae:stop); telnet localhost 4444'
+alias stopall='(cd ~/taskqueuedispatch/integration && mvn gae:stop) && (cd ~/fspotcloud/gae-war && mvn gae:stop);(cd ~/botdispatch/integration-test && mvn gae:stop); (cd ~/fspotcloud && g {j2ee,gae}-war:clean )'
 alias build='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false install testability:testability)'
 alias sbuild='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dmaven.test.error.ignore -Dmaven.test.failure.ignore -Dnodelete -Dfspotcloud.test.webdriver=fire )'
 alias rbuild='stopall; cd ~/fspotcloud && time (cleanall ; mvn)'
@@ -54,7 +58,9 @@ function resume() {
 function gRepl() {
   find -type f -name build.gradle -exec sed -i -e "s/\"$1\"/libs.$2/g" {} \; ;
 }
-alias gbuild='cd ~/fspotcloud/ && gradle clean :peer:build :server:build :user-service-api:build :user-service-openid:build :user-service-gae:build :e2e-test:build :model-api:build :model-jpa-j2ee:build :model-jpa-gae:build :peer-server-integration:packageTests :server-module-gae:buildNeeded :server-module-j2ee:buildNeeded :client:compileGwt :gae-war:buildNeeded'
+alias gbuild-old-style='cd ~/fspotcloud/ && gradle clean :peer:build :server:build :user-service-api:build :user-service-openid:build :user-service-gae:build :e2e-test:build :model-api:build :model-jpa-j2ee:build :model-jpa-gae:build :peer-server-integration:packageTests :server-module-gae:buildNeeded :server-module-j2ee:buildNeeded :client:compileGwt :gae-war:buildNeeded'
 function g() {
-  gradle --daemon -x :client:compileGwt $@;
+  CMD="gradle --daemon $@";
+  echo $CMD;
+  $CMD;
 }
