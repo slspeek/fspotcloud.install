@@ -27,20 +27,7 @@ if [ ! -d ~/taskqueuedispatch ]; then
 fi
 cd fspotcloud.install
 source ./env.sh
-cd ~/fspotcloud.simplejpadao
-hg pull -u
-cd ~/botdispatch
-hg pull -u
-cd ~/taskqueuedispatch
-hg pull -u
 cd ~/fspotcloud
 hg pull -u
-cd ~/fspotcloud.simplejpadao/
-mvn clean install
-cd ~/taskqueuedispatch/
-mvn clean install
-cd ~/botdispatch/
-mvn clean install
-cd ~/fspotcloud
-mvn -Dmaven.test.error.ignore=false -Dmaven.test.failure.ignore=false -Dfspotcloud.test.webdriver=fire clean install
+gbuildall
 
