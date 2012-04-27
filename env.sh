@@ -1,18 +1,15 @@
 # The first two variables are user-editable
 export YOUR_SECRET=SECRET
 export GAE_APPLICATION_ID=jfspotcloud
-
-
 export PATH=$HOME/gradle-1.0-milestone-8/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 alias deepgaebuild='g {client,e2e-test,gae-war,installer-gae,model-api,model-jpa,model-jpa-gae,peer,peer-rpc,peer-server-integration,prod-gae-war,rpc,server,server-module-gae,test-util,user-service-api,user-service-gae}:build'
 alias deepj2eebuild='g {client,e2e-test,j2ee-war-noauth,model-api,model-jpa,model-jpa-j2ee,peer,peer-rpc,peer-server-integration,rpc,server,server-module-j2ee,test-util,user-service-api,user-service-openid,prod-j2ee-war,installer-j2ee-server,installer-peer}:build'
 alias vt='x-www-browser build/reports/tests/index.html'
-alias gb='gradle --daemon build'
+alias gb='g build'
 alias gbuildall='stopall ; cd ~/fspotcloud && g clean && deepgaebuild && deepj2eebuild'
-alias gbuild='cd ~/fspotcloud && chc && g {installer-gae,gae-war}:build && g j2ee-war-noauth:build'
-alias gcb='gradle --daemon clean build'
+alias gcb='g clean build'
 alias chc='g -x :client:clean -x :client:cleanCompileGwt clean'
 alias vienv='vi ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
@@ -34,15 +31,13 @@ alias peer='cd ~/fspotcloud/peer/ && java -Dpause=30 -Djava.util.logging.config.
 
 alias peerprodlocal='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 alias runlocal='cd ~/fspotcloud && cd gae-war && mvn gae:stop gae:run'
-alias verify='(stopall; cd gae-war; mvn clean verify -Dnodelete)'
+alias verify='(stopall; cd gae-war; mvn clean verify)'
 alias gwt='(cd client &&  mvn gwt:run)'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
 alias reclipse='mvn eclipse:clean eclipse:eclipse' 
 alias reidea='g cleanIdea idea'
 alias mci='mvn clean install'
-alias runinstaller='java -jar ~/fspotcloud/installer/target/installer-standard.jar'
 alias rununinstaller='java -jar ~/FSpotCloud/Uninstaller/uninstaller.jar'
-alias cbuild='rm -rf $HOME/.m2/repository/fspotcloud/ && cd ~/taskqueuedispatch && stopall;mci && cd && cd botdispatch && mci && build'
 alias sim='cd ~/fspotcloud.simplejpadao'
 function clean() {
   (cd $1 && mvn clean);
@@ -53,15 +48,12 @@ function sb() {
 function b() {
   (cd $1 && mvn clean ; rm -rf target; mvn install);
 }
-alias cheapclean='clean war; clean server; clean peer; clean model-api; clean model;'
-alias cheapbuild='b rpc && b peer-rpc && b peer && b model && b server && b war'
 function resume() {
    mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false install -rf :$1;
 }
 function gRepl() {
   find -type f -name build.gradle -exec sed -i -e "s/\"$1\"/libs.$2/g" {} \; ;
 }
-alias gbuild-old-style='cd ~/fspotcloud/ && gradle clean :peer:build :server:build :user-service-api:build :user-service-openid:build :user-service-gae:build :e2e-test:build :model-api:build :model-jpa-j2ee:build :model-jpa-gae:build :peer-server-integration:packageTests :server-module-gae:buildNeeded :server-module-j2ee:buildNeeded :client:compileGwt :gae-war:buildNeeded'
 function g() {
   CMD="gradle --daemon $@";
   echo $CMD;
