@@ -4,11 +4,11 @@ export GAE_APPLICATION_ID=jfspotcloud
 export PATH=$HOME/gradle-1.0-milestone-8/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
-alias deepgaebuild='g {client,e2e-test,gae-war,installer-gae,model-api,model-jpa,model-jpa-gae,peer,peer-rpc,peer-server-integration,prod-gae-war,rpc,server,server-module-gae,test-util,user-service-api,user-service-gae}:build'
-alias deepj2eebuild='g {client,e2e-test,j2ee-war-noauth,model-api,model-jpa,model-jpa-j2ee,peer,peer-rpc,peer-server-integration,rpc,server,server-module-j2ee,test-util,user-service-api,user-service-openid,prod-j2ee-war,installer-j2ee-server,installer-peer}:build'
+alias deepgaebuild='g {client,e2e-test,gae-e2e,installer-gae,model-api,model-jpa,model-jpa-gae,peer,peer-rpc,peer-server-integration,prod-gae-war,rpc,server,server-module-gae,test-util,user-service-api,user-service-gae}:build'
+alias deepj2eebuild='g {client,e2e-test,j2ee-e2e,model-api,model-jpa,model-jpa-j2ee,peer,peer-rpc,peer-server-integration,rpc,server,server-module-j2ee,test-util,user-service-api,user-service-openid,prod-j2ee-war,installer-j2ee-server,installer-peer}:build'
 alias vt='x-www-browser build/reports/tests/index.html'
 alias gb='g build'
-alias gbuildall='stopall ; cd ~/fspotcloud && g clean && deepgaebuild && deepj2eebuild'
+alias gbuildall='time (stopall ; cd ~/fspotcloud && g clean && deepgaebuild && deepj2eebuild)'
 alias gcb='g clean build'
 alias chc='g -x :client:clean -x :client:cleanCompileGwt clean'
 alias cgradle='rm -rf ~/.gradle/daemon ~/fspotcloud/.gradle'
@@ -60,3 +60,4 @@ function g() {
   echo $CMD;
   $CMD;
 }
+alias totalbuild='time (build && gbuildall)'
