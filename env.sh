@@ -16,7 +16,7 @@ alias vienv='vi ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
 alias allstat='cd ~/fspotcloud.install && status ;cd ~/fspotcloud && status ; cd ~/botdispatch && status;cd ~/fspotcloud.simplejpadao/ && status ; cd ~/taskqueuedispatch/ && status'
 alias cleanall='cd ~/fspotcloud && mvn clean ; find -type d \( -name bin -or -name target -or -name runtime -or -name MODELJPA -or -name te-report \) -exec rm -rvf {} \;'
-alias stopall='(cd ~/taskqueuedispatch/integration && mvn gae:stop) && (cd ~/fspotcloud/gae-war && mvn gae:stop);(cd ~/botdispatch/integration-test && mvn gae:stop); (cd ~/fspotcloud && g {j2ee,gae}-war:clean && g --stop)'
+alias stopall='(cd ~/fspotcloud/gae-war && mvn gae:stop);(cd ~/fspotcloud && g {j2ee,gae}-e2e:clean && g --stop)'
 alias build='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false install testability:testability)'
 alias sbuild='stopall; cd ~/fspotcloud && time (cleanall ; mvn -Dmaven.test.error.ignore -Dmaven.test.failure.ignore -Dnodelete -Dfspotcloud.test.webdriver=fire )'
 alias rbuild='stopall; cd ~/fspotcloud && time (cleanall ; mvn)'
@@ -59,5 +59,9 @@ function g() {
   CMD="gradle --daemon $@";
   echo $CMD;
   $CMD;
+}
+function unit_test_coverage() {
+  MODULE=$1;
+  (cd $MODULE && mvn clean cobertura:cobertura && x-www-browser target/site/cobertura/index.html);
 }
 alias totalbuild='time (build && gbuildall)'
