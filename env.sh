@@ -65,3 +65,12 @@ function unit_test_coverage() {
   (cd $MODULE && mvn clean cobertura:cobertura && x-www-browser target/site/cobertura/index.html);
 }
 alias totalbuild='time (build && gbuildall)'
+function bumpUpVersions() {
+  VERSION=$(grep version build.gradle |cut -d" " -f7);
+  NEXT_VERSION_NUMBER=$(( ${VERSION:6:2} + 1));
+  VERSION=${VERSION:1:8}
+  cd ~/fspotcloud;
+  sed -i -e "s/${VERSION}/0.12-${NEXT_VERSION_NUMBER}g/" build.gradle;
+  MVN_VERSION=$(grep 'version>0.12-' pom.xml|cut -c14-20);
+  find -name pom.xml -exec sed -i -e "s/${MVN_VERSION}/0.12-${NEXT_VERSION_NUMBER}/" {} \; ;
+}
