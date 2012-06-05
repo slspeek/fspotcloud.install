@@ -31,7 +31,8 @@ alias localbot='cd botdispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:
 alias peer='cd ~/fspotcloud/peer/ && java -Dpause=30 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=$YOUR_APPENGINE_DEPLOYMENT -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 
 alias peerprodlocal='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
-alias runlocal='cd ~/fspotcloud && cd gae-war && mvn gae:stop gae:run'
+alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{clean,gaeRun}'
+alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{clean,tomcatRun}'
 alias verify='(stopall; cd gae-war; mvn clean verify)'
 alias gwt='(cd client &&  mvn gwt:run)'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
@@ -73,4 +74,14 @@ function bumpUpVersions() {
   sed -i -e "s/${VERSION}/0.12-${NEXT_VERSION_NUMBER}g/" build.gradle;
   MVN_VERSION=$(grep 'version>0.12-' pom.xml|cut -c14-20);
   find -name pom.xml -exec sed -i -e "s/${MVN_VERSION}/0.12-${NEXT_VERSION_NUMBER}/" {} \; ;
+}
+
+function shortbuild() {
+  g clean;
+  g {peer-server-integration,server,peer,server-module-j2ee,user-service-gae,user-service-api,\
+model-api,peer-rpc,model-jpa-gae,rpc,model-jpa,test-util,model-jpa-j2ee,server-module-gae,\
+user-service-openid}:build;
+}
+function e2etesting() {
+  g {gae,j2ee}-e2e:{clean,build}
 }
