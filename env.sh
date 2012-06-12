@@ -1,5 +1,5 @@
 # The first two variables are user-editable
-export YOUR_SECRET=SECRET
+export YOUR_SECRET=VERY_GRADLE
 export GAE_APPLICATION_ID=jfspotcloud
 export PATH=$HOME/gradle-1.0-milestone-8/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
@@ -25,14 +25,13 @@ alias buildserver='cd server && mvn clean install && cd war-prod && mvn gae:stop
 alias buildpeer='cd peer && mvn clean install && cd war && mvn gae:stop clean verify'
 alias cleanrun='cd war-prod && stopall ; mvn clean gae:run'
 alias deploy='cd war-prod/ && mvn -Dgae.deps.split -Dbot.secret=$YOUR_SECRET gae:deploy'
-alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/steven/Photos -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
-alias localpeerj2ee='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/steven/Photos -Dpause=3 -Dendpoint=localhost:8080/j2ee-war -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
+alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/steven/Photos -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/photos.db  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
 alias localbot='cd botdispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -jar target/test-bot-*-jar-with-dependencies.jar '
 alias peer='cd ~/fspotcloud/peer/ && java -Dpause=30 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=$YOUR_APPENGINE_DEPLOYMENT -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 
 alias peerprodlocal='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
-alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{clean,gaeRun}'
-alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{clean,tomcatRun}'
+alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{gaeStop,gaeRun}'
+alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{tomcatStop,tomcatRun}'
 alias verify='(stopall; cd gae-war; mvn clean verify)'
 alias gwt='(cd client &&  mvn gwt:run)'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
@@ -76,12 +75,14 @@ function bumpUpVersions() {
   find -name pom.xml -exec sed -i -e "s/${MVN_VERSION}/0.12-${NEXT_VERSION_NUMBER}/" {} \; ;
 }
 
+function shortcompile() {
+   g {peer-server-integration,server,peer,server-module-j2ee,user-service-gae,user-service-api,model-api,peer-rpc,model-jpa-gae,rpc,model-jpa,test-util,model-jpa-j2ee,server-module-gae,user-service-openid}:build;
+}
 function shortbuild() {
   g clean;
-  g {peer-server-integration,server,peer,server-module-j2ee,user-service-gae,user-service-api,\
-model-api,peer-rpc,model-jpa-gae,rpc,model-jpa,test-util,model-jpa-j2ee,server-module-gae,\
-user-service-openid}:build;
+  shortcompile;
 }
 function e2etesting() {
   g {gae,j2ee}-e2e:{clean,build}
 }
+
