@@ -29,7 +29,7 @@ alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/pe
 alias localbot='cd botdispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -jar target/test-bot-*-jar-with-dependencies.jar '
 alias peer='cd ~/fspotcloud/peer/ && java -Dpause=30 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=$YOUR_APPENGINE_DEPLOYMENT -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
 
-alias peerprodlocal='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -jar target/peer-*-jar-with-dependencies.jar '
+alias localprodpeer='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
 alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{gaeStop,gaeRun}'
 alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{tomcatStop,tomcatRun}'
 alias verify='(stopall; cd gae-war; mvn clean verify)'
@@ -78,6 +78,7 @@ function bumpUpVersions() {
 function shortcompile() {
    g {peer-server-integration,server,peer,server-module-j2ee,user-service-gae,user-service-api,model-api,peer-rpc,model-jpa-gae,rpc,model-jpa,test-util,model-jpa-j2ee,server-module-gae,user-service-openid}:build;
 }
+
 function shortbuild() {
   g clean;
   shortcompile;
@@ -86,3 +87,4 @@ function e2etesting() {
   g {gae,j2ee}-e2e:{clean,build}
 }
 
+alias blob='cd ~/fspotcloud.simpleblobstore/'
