@@ -88,3 +88,12 @@ function e2etesting() {
 }
 
 alias blob='cd ~/fspotcloud.simpleblobstore/'
+alias gmodel='g model-{api,jpa,jpa-gae,jpa-j2ee}:{clean,build}'
+alias compileAll='g compileJava'
+alias compileAllTests='g compileTestJava'
+alias vtj2e='x-www-browser server-module-j2ee/build/reports/tests/index.html'
+alias vtgae='x-www-browser server-module-gae/build/reports/tests/index.html'
+alias itestj2e='cd ~/fspotcloud && g server-module-j2ee:{clean,test}'
+alias itestgae='cd ~/fspotcloud && g server-module-gae:{clean,test}'
+alias installers='g installer-{gae,peer,j2ee-server}:build'
+alias ffbuild='compileAll && compileAllTests && shortcompile && e2etesting && installers'
