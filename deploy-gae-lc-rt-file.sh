@@ -1,0 +1,1 @@
+mvn deploy:deploy-file -DgroupId=com.google.appengine -DartifactId=appengine-local-runtime -Dversion=1.7.0 -Dpackaging=jar -Dfile=$HOME/appengine-java-sdk-1.7.0/lib/impl/appengine-local-runtime.jar -Durl=dav:https://fspotcloud-maven.googlecode.com/svn/maven/repository -DrepositoryId=fspotcloud-maven
