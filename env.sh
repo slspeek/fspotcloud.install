@@ -1,7 +1,8 @@
 # The first two variables are user-editable
 export YOUR_SECRET=VERY_GRADLE
 export GAE_APPLICATION_ID=jfspotcloud
-export PATH=$HOME/gradle-1.0-milestone-8/bin:$HOME/apache-maven-3.0.4/bin:$PATH
+#export PATH=$HOME/gradle-1.0-milestone-8/bin:$HOME/apache-maven-3.0.4/bin:$PATH
+export PATH=$HOME/gradle-1.0/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 function vt() {
@@ -9,7 +10,7 @@ function vt() {
 }
 alias gb='g build'
 alias gcb='g clean build'
-alias cgradle='rm -rf ~/.gradle/daemon ~/fspotcloud/.gradle'
+alias cgradle='rm -rf ~/.gradle/ ~/fspotcloud/.gradle'
 alias vienv='vi ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
 alias allstat='cd ~/fspotcloud.install && status ;cd ~/fspotcloud && status ; cd ~/botdispatch && status;cd ~/fspotcloud.simplejpadao/ && status ; cd ~/taskqueuedispatch/ && status'
@@ -22,8 +23,8 @@ alias deploy='cd war-prod/ && mvn -Dgae.deps.split -Dbot.secret=$YOUR_SECRET gae
 alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/steven/Photos -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/photos.db  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
 alias localbot='cd botdispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -jar target/test-bot-*-jar-with-dependencies.jar '
 alias localprodpeer='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
-alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{gaeStop,gaeRun}'
-alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{tomcatStop,tomcatRun}'
+alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{gaeStop,gaeRun} -Pserver_daemon=false'
+alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{tomcatStop,tomcatRun} -Pserver_daemon=false'
 alias gwt='g client:gwtDM'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
 alias reclipse='g cleanEclipse eclipse' 
