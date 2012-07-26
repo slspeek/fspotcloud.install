@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-GAE_VERSION=1.6.6
+GAE_VERSION=1.7.0
 cd ~
 if [ ! -d gradle-1.0-milestone-8 ]; then
   wget http://services.gradle.org/distributions/gradle-1.0-milestone-8-all.zip  && unzip gradle-1.0-milestone-8-all.zip
