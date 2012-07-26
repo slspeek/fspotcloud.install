@@ -72,6 +72,10 @@ function e2etesting() {
   g2e && j2e;
 }
 
+function deps () {
+  g ${1}:dependencies
+}
+
 alias blob='cd ~/fspotcloud.simpleblobstore/'
 alias gmodel='g model-{api,jpa,jpa-gae,jpa-j2ee}:{clean,build}'
 alias compileAll='g compileJava'
@@ -83,3 +87,5 @@ alias itestgae='cd ~/fspotcloud && g server-module-gae:{clean,test}'
 alias installers='g installer-{gae,peer,j2ee-server}:build'
 alias ffbuild='time (compileAll && compileAllTests && shortcompile && e2etesting && installers)'
 alias release_build='time g clean build -Prelease=true'
+alias startAr='cd ~/tools/apache-archiva-1.3.5/ && bin/archiva console'
+alias stanal='g findbugs{Main,Test} checkstyle{Main,Test}'
