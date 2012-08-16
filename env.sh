@@ -10,6 +10,7 @@ function vt() {
 }
 alias gb='g build'
 alias gcb='g clean build'
+alias gcl='g clean'
 alias cgradle='rm -rf ~/.gradle/ ~/fspotcloud/.gradle'
 alias vienv='vi ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
@@ -68,6 +69,9 @@ function shortbuild() {
 }
 alias g2e='g gae-e2e:{clean,build}'
 alias j2e='g j2ee-e2e:{clean,build}'
+function e2etesting_all() {
+  g2e -Pall_tests=true && j2e -Pall_tests=true ;
+}
 function e2etesting() {
   g2e && j2e;
 }
@@ -86,6 +90,6 @@ alias itestj2e='cd ~/fspotcloud && g server-module-j2ee:{clean,test}'
 alias itestgae='cd ~/fspotcloud && g server-module-gae:{clean,test}'
 alias installers='g installer-{gae,peer,j2ee-server}:build'
 alias ffbuild='time (compileAll && compileAllTests && shortcompile && e2etesting && installers)'
-alias release_build='time g clean build -Prelease=true'
+alias release_build='time g clean build -Prelease=true -Pall_tests=true -Panalysis=true projectReport'
 alias startAr='cd ~/tools/apache-archiva-1.3.5/ && bin/archiva console'
-alias stanal='g findbugs{Main,Test} checkstyle{Main,Test}'
+alias stanal='g -Panalysis=true projectReport jdepend{Main,Test} pmd{Main,Test} findbugs{Main,Test} checkstyle{Main,Test}'
