@@ -5,7 +5,7 @@ cd ~
 if [ ! -d gradle-1.0 ]; then
   wget http://services.gradle.org/distributions/gradle-1.0-all.zip  && unzip gradle-1.0-all.zip
 fi
-sudo apt-get update && sudo apt-get install --yes --force-yes curl sun-java6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz exif
+sudo apt-get update && sudo apt-get install --yes --force-yes curl openjdk-6-jdk imagemagick sqlitebrowser mercurial iceweasel graphviz exif screen
 sudo update-alternatives --set java  /usr/lib/jvm/java-6-sun/jre/bin/java 
 if [ ! -d ~/appengine-java-sdk-$GAE_VERSION ]; then
 	wget http://googleappengine.googlecode.com/files/appengine-java-sdk-$GAE_VERSION.zip && unzip appengine-java-sdk-$GAE_VERSION.zip
