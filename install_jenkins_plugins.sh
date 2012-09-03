@@ -5,3 +5,5 @@ for PLUGIN in copy-to-slave checkstyle cobertura findbugs jdepend pmd gradle mer
 do
 $INSTALL_PLUGIN $PLUGIN
 done
+java -jar jenkins-cli.jar -s $JENKINS_URL restart
+rm jenkins-cli.jar

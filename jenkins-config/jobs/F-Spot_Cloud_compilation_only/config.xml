@@ -5,7 +5,6 @@
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.mercurial.MercurialSCM">
-    <installation>(Default)</installation>
     <source>https://code.google.com/p/fspotcloud.java/</source>
     <modules></modules>
     <clean>false</clean>
@@ -27,7 +26,7 @@
     <hudson.plugins.gradle.Gradle>
       <description></description>
       <switches>-x :client:compileGwt</switches>
-      <tasks>compileJava compileTestJava</tasks>
+      <tasks>clean compileJava compileTestJava</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>Gradle 1.0</gradleName>
