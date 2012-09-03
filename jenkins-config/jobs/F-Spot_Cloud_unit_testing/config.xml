@@ -4,19 +4,25 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.mercurial.MercurialSCM">
+    <source>https://code.google.com/p/fspotcloud.javasrc/</source>
+    <modules></modules>
+    <clean>false</clean>
+    <browser class="hudson.plugins.mercurial.browser.HgWeb">
+      <url>https://code.google.com/p/fspotcloud.javasrc/</url>
+    </browser>
+  </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>/home/jenkins/jobs/F-SpotCloud_compilation_only/workspace/</customWorkspace>
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches></switches>
-      <tasks>unittests</tasks>
+      <switches>-x :client:compileGwt</switches>
+      <tasks>clean unittests</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>Gradle 1.0</gradleName>
