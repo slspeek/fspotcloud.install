@@ -1,38 +1,40 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Compilation only</description>
+  <description>Installers for J2EE server and peer</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.mercurial.MercurialSCM">
-    <source>https://code.google.com/p/fspotcloud.java/</source>
+    <source>https://code.google.com/p/fspotcloud.javasrc/</source>
     <modules></modules>
+    <branch>experimental</branch>
     <clean>false</clean>
     <browser class="hudson.plugins.mercurial.browser.HgWeb">
-      <url>https://code.google.com/p/fspotcloud.java/</url>
+      <url>https://code.google.com/p/fspotcloud.javasrc/</url>
     </browser>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector">
-    <hudson.triggers.SCMTrigger>
-      <spec>*/5 * * * *</spec>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-x :client:compileGwt</switches>
-      <tasks>clean compileJava compileTestJava</tasks>
+      <switches></switches>
+      <tasks>clean installer-j2ee-server:build installer-peer:build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>Gradle 1.0</gradleName>
       <useWrapper>false</useWrapper>
     </hudson.plugins.gradle.Gradle>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>installer-j2ee-server/build/distributions/*.jar</artifacts>
+      <latestOnly>false</latestOnly>
+    </hudson.tasks.ArtifactArchiver>
+  </publishers>
   <buildWrappers/>
 </project>
