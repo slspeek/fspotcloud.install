@@ -10,6 +10,7 @@
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <systemMessage>F-Spot Cloud build server</systemMessage>
   <jdks>
     <jdk>
       <name>OpenJDK 6 </name>
