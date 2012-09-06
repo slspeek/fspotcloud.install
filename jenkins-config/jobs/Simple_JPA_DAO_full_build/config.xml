@@ -18,7 +18,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
     <hudson.triggers.SCMTrigger>
-      <spec>*/15 * * * *</spec>
+      <spec>*/5 * * * *</spec>
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
@@ -47,9 +47,14 @@
     </hudson.maven.reporters.MavenMailer>
   </reporters>
   <publishers>
-    <hudson.tasks.test.AggregatedTestResultPublisher>
-      <includeFailedBuilds>false</includeFailedBuilds>
-    </hudson.tasks.test.AggregatedTestResultPublisher>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>Bot_Dispatch_full_build, Simple_Blobstore_full_build</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
   </publishers>
   <buildWrappers/>
   <prebuilders/>

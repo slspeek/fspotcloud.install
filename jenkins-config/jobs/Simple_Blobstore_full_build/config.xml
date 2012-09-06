@@ -5,11 +5,11 @@
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.mercurial.MercurialSCM">
-    <source>https://code.google.com/p/botdispatch</source>
+    <source>https://code.google.com/p/fspotcloud.simpleblobstore/</source>
     <modules></modules>
     <clean>false</clean>
     <browser class="hudson.plugins.mercurial.browser.HgWeb">
-      <url>https://code.google.com/p/botdispatch/</url>
+      <url>https://code.google.com/p/fspotcloud.simpleblobstore/</url>
     </browser>
   </scm>
   <canRoam>true</canRoam>
@@ -18,7 +18,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
     <hudson.triggers.SCMTrigger>
-      <spec>*/15 * * * *</spec>
+      <spec>*/5 * * * *</spec>
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
@@ -29,10 +29,28 @@
       <tasks>clean build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
-      <gradleName>Gradle 1.0-rc3</gradleName>
+      <gradleName>Gradle 1.0</gradleName>
       <useWrapper>false</useWrapper>
     </hudson.plugins.gradle.Gradle>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>**/build/libs/*.jar</artifacts>
+      <latestOnly>false</latestOnly>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>F-Spot_Cloud_a1_compilation_only</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>**/build/**/TEST*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+  </publishers>
   <buildWrappers/>
 </project>

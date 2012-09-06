@@ -46,8 +46,8 @@
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
           </default>
           <int>1</int>
-          <string>DISPLAY=:0.0</string>
-          <string></string>
+          <string>DISPLAY</string>
+          <string>:0.0</string>
         </tree-map>
       </envVars>
     </hudson.slaves.EnvironmentVariablesNodeProperty>
