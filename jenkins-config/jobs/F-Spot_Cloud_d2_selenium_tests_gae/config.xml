@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Selenium testing for GAE</description>
+  <description>Selenium testing for the GAE platform</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.mercurial.MercurialSCM">
@@ -22,8 +22,8 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches></switches>
-      <tasks>clean gae-e2e:build</tasks>
+      <switches>-Dpause.time=1500 -Pall_tests=true</switches>
+      <tasks>gae-e2e:clean gae-e2e:build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>Gradle 1.0</gradleName>
