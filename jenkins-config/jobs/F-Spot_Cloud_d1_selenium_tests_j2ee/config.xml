@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Selenium testing for J2EE</description>
+  <description>Selenium testing for the J2EE platform</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.mercurial.MercurialSCM">
@@ -22,7 +22,7 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-Pall_tests=true</switches>
+      <switches>-Pall_tests=true -Dpause.time=1500</switches>
       <tasks>clean j2ee-e2e:build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
