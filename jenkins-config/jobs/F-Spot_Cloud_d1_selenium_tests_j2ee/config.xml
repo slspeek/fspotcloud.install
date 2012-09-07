@@ -32,7 +32,7 @@
   </builders>
   <publishers>
     <hudson.tasks.junit.JUnitResultArchiver>
-      <testResults>j2ee-e2e/build/reports/tests/junitreports/TEST*.xml</testResults>
+      <testResults>j2ee-e2e/build/test-results/*.xml</testResults>
       <keepLongStdio>true</keepLongStdio>
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>

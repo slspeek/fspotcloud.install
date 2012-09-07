@@ -22,7 +22,7 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-Pall_tests=true -Panalysis=true</switches>
+      <switches>-Pall_tests=true -Panalysis=true -Dpause.time=1500</switches>
       <tasks>clean build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>

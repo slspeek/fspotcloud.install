@@ -23,7 +23,7 @@
     <hudson.plugins.gradle.Gradle>
       <description></description>
       <switches>-Dpause.time=1500 -Pall_tests=true</switches>
-      <tasks>gae-e2e:clean gae-e2e:build</tasks>
+      <tasks>clean gae-e2e:build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>Gradle 1.0</gradleName>
@@ -32,7 +32,7 @@
   </builders>
   <publishers>
     <hudson.tasks.junit.JUnitResultArchiver>
-      <testResults>gae-e2e/build/reports/tests/junitreports/TEST*.xml</testResults>
+      <testResults>gae-e2e/build/test-results/*.xml</testResults>
       <keepLongStdio>true</keepLongStdio>
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>
