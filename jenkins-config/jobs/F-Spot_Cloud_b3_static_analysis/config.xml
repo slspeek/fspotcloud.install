@@ -52,7 +52,7 @@
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
       <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
-      <pattern>**/build/reports/checkstyle/main.xml **/build/reports/checkstyle/test.xml</pattern>
+      <pattern>**/build/reports/checkstyle/main.xml,**/build/reports/checkstyle/test.xml</pattern>
     </hudson.plugins.checkstyle.CheckStylePublisher>
     <hudson.plugins.findbugs.FindBugsPublisher>
       <healthy></healthy>
@@ -75,7 +75,7 @@
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
       <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
-      <pattern>**/build/reports/findbugs/main.xml **/build/reports/findbugs/test.xml</pattern>
+      <pattern>**/build/reports/findbugs/main.xml,**/build/reports/findbugs/test.xml</pattern>
       <isRankActivated>false</isRankActivated>
     </hudson.plugins.findbugs.FindBugsPublisher>
     <hudson.plugins.pmd.PmdPublisher>
@@ -99,7 +99,7 @@
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
       <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
-      <pattern>**/build/reports/pmd/main.xml **/build/reports/pmd/test.xml</pattern>
+      <pattern>**/build/reports/pmd/main.xml,**/build/reports/pmd/test.xml</pattern>
     </hudson.plugins.pmd.PmdPublisher>
     <hudson.plugins.jdepend.JDependRecorder>
       <configuredJDependFile></configuredJDependFile>
