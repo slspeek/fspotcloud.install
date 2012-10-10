@@ -21,7 +21,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.gradle.Gradle>
-      <description>-x :client:compileGwt</description>
+      <description>-x :client:compileGwt  -Pbuild_number=$BUILD_NUMBER</description>
       <switches>-Panalysis=true</switches>
       <tasks>clean pmdMain pmdTest findbugsMain findbugsTest checkstyleMain checkstyleTest</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>

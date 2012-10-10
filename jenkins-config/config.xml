@@ -45,9 +45,11 @@
           <default>
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
           </default>
-          <int>1</int>
+          <int>2</int>
           <string>DISPLAY</string>
           <string>:0.0</string>
+          <string>JAVA_ARGS</string>
+          <string> -Xms256m -Xmx2048m</string>
         </tree-map>
       </envVars>
     </hudson.slaves.EnvironmentVariablesNodeProperty>
