@@ -22,8 +22,8 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-Pcobertura=true</switches>
-      <tasks>unittestcoverage</tasks>
+      <switches>-i -Pcobertura=true -Pbuild_number=$BUILD_NUMBER</switches>
+      <tasks>clean unittestcoverage</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>Gradle 1.0</gradleName>

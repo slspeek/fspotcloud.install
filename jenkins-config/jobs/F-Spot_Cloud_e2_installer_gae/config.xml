@@ -22,7 +22,7 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches></switches>
+      <switches> -Pbuild_number=$BUILD_NUMBER</switches>
       <tasks>clean installer-gae:build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>

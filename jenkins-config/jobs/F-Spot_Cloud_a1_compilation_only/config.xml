@@ -26,7 +26,7 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-x :client:compileGwt</switches>
+      <switches>-x :client:compileGwt -Pbuild_number=$BUILD_NUMBER</switches>
       <tasks>clean compileJava compileTestJava</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>

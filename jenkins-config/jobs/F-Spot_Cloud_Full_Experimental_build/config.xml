@@ -22,7 +22,7 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-Pall_tests=true -Panalysis=true -Dpause.time=1500</switches>
+      <switches>-Pall_tests=true -Panalysis=true -Dpause.time=1500  -Pbuild_number=$BUILD_NUMBER</switches>
       <tasks>clean build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
@@ -52,7 +52,7 @@
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
       <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
-      <pattern>**/build/reports/checkstyle/main.xml **/build/reports/checkstyle/test.xml</pattern>
+      <pattern>**/build/reports/checkstyle/main.xml,**/build/reports/checkstyle/test.xml</pattern>
     </hudson.plugins.checkstyle.CheckStylePublisher>
     <hudson.plugins.findbugs.FindBugsPublisher>
       <healthy></healthy>
@@ -99,7 +99,7 @@
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
       <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
-      <pattern>**/build/reports/pmd/main.xml **/build/reports/pmd/test.xml</pattern>
+      <pattern>**/build/reports/pmd/main.xml,**/build/reports/pmd/test.xml</pattern>
     </hudson.plugins.pmd.PmdPublisher>
     <hudson.tasks.junit.JUnitResultArchiver>
       <testResults>**/build/**/TEST*.xml</testResults>
