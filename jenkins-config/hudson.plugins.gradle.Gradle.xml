@@ -11,6 +11,9 @@
             <hudson.plugins.gradle.GradleInstaller>
               <id>1.0</id>
             </hudson.plugins.gradle.GradleInstaller>
+            <hudson.plugins.gradle.GradleInstaller>
+              <id>0.7</id>
+            </hudson.plugins.gradle.GradleInstaller>
           </installers>
         </hudson.tools.InstallSourceProperty>
       </properties>
