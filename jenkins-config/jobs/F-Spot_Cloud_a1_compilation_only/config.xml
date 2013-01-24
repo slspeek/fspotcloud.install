@@ -36,7 +36,7 @@
   </builders>
   <publishers>
     <hudson.tasks.BuildTrigger>
-      <childProjects>F-Spot_Cloud_b1_unit_testing, F-Spot_Cloud_b2_unit_test_coverage, F-Spot_Cloud_b3_static_analysis</childProjects>
+      <childProjects>F-Spot_Cloud_b1_unit_testing, F-Spot_Cloud_b2_unit_test_coverage, F-Spot_Cloud_b3_static_analysis, F-Spot_Cloud_b4_gwt_compile_report</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

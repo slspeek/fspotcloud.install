@@ -22,7 +22,7 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-Pall_tests=true -Panalysis=true -Dpause.time=1500  -Pbuild_number=$BUILD_NUMBER</switches>
+      <switches>-Pall_tests=true -Panalysis=true -Dtest_pause_time=2500  -Pbuild_number=$BUILD_NUMBER</switches>
       <tasks>clean build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>

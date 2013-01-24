@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Selenium testing for the GAE platform</description>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.mercurial.MercurialSCM">
@@ -22,8 +22,8 @@
   <builders>
     <hudson.plugins.gradle.Gradle>
       <description></description>
-      <switches>-Ptest_pause_time=3500 -Pall_tests=true  -Pbuild_number=$BUILD_NUMBER</switches>
-      <tasks>clean gae-e2e:build</tasks>
+      <switches>-Pgwt_compile_report=true -Pbuild_number=$BUILD_NUMBER -i</switches>
+      <tasks>client:clean client:build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>Gradle 1.0</gradleName>
@@ -31,19 +31,32 @@
     </hudson.plugins.gradle.Gradle>
   </builders>
   <publishers>
-    <hudson.tasks.junit.JUnitResultArchiver>
-      <testResults>gae-e2e/build/test-results/*.xml</testResults>
-      <keepLongStdio>true</keepLongStdio>
-      <testDataPublishers/>
-    </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.tasks.BuildTrigger>
-      <childProjects>F-Spot_Cloud_e2_installer_gae</childProjects>
+      <childProjects>F-Spot_Cloud_c1_integration_tests_j2ee, F-Spot_Cloud_c2_integration_tests_gae</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
         <color>BLUE</color>
       </threshold>
     </hudson.tasks.BuildTrigger>
+    <htmlpublisher.HtmlPublisher>
+      <reportTargets>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Dashboard compile report</reportName>
+          <reportDir>client/build/gwt/extra/com.googlecode.fspotcloud.dashboard/soycReport/compile-report/</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <keepAll>true</keepAll>
+          <wrapperName>htmlpublisher-wrapper.html</wrapperName>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Main compile report</reportName>
+          <reportDir>client/build/gwt/extra/fspotcloud/soycReport/compile-report/</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <keepAll>true</keepAll>
+          <wrapperName>htmlpublisher-wrapper.html</wrapperName>
+        </htmlpublisher.HtmlPublisherTarget>
+      </reportTargets>
+    </htmlpublisher.HtmlPublisher>
   </publishers>
   <buildWrappers/>
 </project>

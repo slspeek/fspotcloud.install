@@ -5,15 +5,63 @@
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
-  <authorizationStrategy class="hudson.security.AuthorizationStrategy$Unsecured"/>
-  <securityRealm class="hudson.security.SecurityRealm$None"/>
+  <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
+    <permission>hudson.model.Computer.Configure:JanT</permission>
+    <permission>hudson.model.Computer.Configure:slspeek</permission>
+    <permission>hudson.model.Computer.Connect:JanT</permission>
+    <permission>hudson.model.Computer.Connect:slspeek</permission>
+    <permission>hudson.model.Computer.Create:JanT</permission>
+    <permission>hudson.model.Computer.Create:slspeek</permission>
+    <permission>hudson.model.Computer.Delete:JanT</permission>
+    <permission>hudson.model.Computer.Delete:slspeek</permission>
+    <permission>hudson.model.Computer.Disconnect:JanT</permission>
+    <permission>hudson.model.Computer.Disconnect:slspeek</permission>
+    <permission>hudson.model.Hudson.Administer:JanT</permission>
+    <permission>hudson.model.Hudson.Administer:slspeek</permission>
+    <permission>hudson.model.Hudson.Read:JanT</permission>
+    <permission>hudson.model.Hudson.Read:anonymous</permission>
+    <permission>hudson.model.Hudson.Read:slspeek</permission>
+    <permission>hudson.model.Hudson.RunScripts:JanT</permission>
+    <permission>hudson.model.Hudson.RunScripts:slspeek</permission>
+    <permission>hudson.model.Item.Build:JanT</permission>
+    <permission>hudson.model.Item.Build:slspeek</permission>
+    <permission>hudson.model.Item.Configure:JanT</permission>
+    <permission>hudson.model.Item.Configure:slspeek</permission>
+    <permission>hudson.model.Item.Create:JanT</permission>
+    <permission>hudson.model.Item.Create:slspeek</permission>
+    <permission>hudson.model.Item.Delete:JanT</permission>
+    <permission>hudson.model.Item.Delete:slspeek</permission>
+    <permission>hudson.model.Item.Read:JanT</permission>
+    <permission>hudson.model.Item.Read:anonymous</permission>
+    <permission>hudson.model.Item.Read:slspeek</permission>
+    <permission>hudson.model.Item.Workspace:JanT</permission>
+    <permission>hudson.model.Item.Workspace:slspeek</permission>
+    <permission>hudson.model.Run.Delete:JanT</permission>
+    <permission>hudson.model.Run.Delete:slspeek</permission>
+    <permission>hudson.model.Run.Update:JanT</permission>
+    <permission>hudson.model.Run.Update:slspeek</permission>
+    <permission>hudson.model.View.Configure:JanT</permission>
+    <permission>hudson.model.View.Configure:slspeek</permission>
+    <permission>hudson.model.View.Create:JanT</permission>
+    <permission>hudson.model.View.Create:slspeek</permission>
+    <permission>hudson.model.View.Delete:JanT</permission>
+    <permission>hudson.model.View.Delete:slspeek</permission>
+    <permission>hudson.scm.SCM.Tag:JanT</permission>
+    <permission>hudson.scm.SCM.Tag:slspeek</permission>
+  </authorizationStrategy>
+  <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+    <disableSignup>true</disableSignup>
+    <enableCaptcha>false</enableCaptcha>
+  </securityRealm>
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
-  <systemMessage>F-Spot Cloud build server</systemMessage>
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter">
+    <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
+  </markupFormatter>
   <jdks>
     <jdk>
-      <name>OpenJDK 6 </name>
+      <name>Openjdk 6</name>
       <home>/usr/lib/jvm/java-6-openjdk</home>
       <properties/>
     </jdk>
@@ -22,7 +70,7 @@
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds/>
   <slaves/>
-  <quietPeriod>5</quietPeriod>
+  <quietPeriod>10</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>
     <hudson.model.AllView>
@@ -32,10 +80,44 @@
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
     </hudson.model.AllView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>F-Spot_Cloud</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames class="tree-set">
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>F-Spot_Cloud_a1_compilation_only</string>
+        <string>F-Spot_Cloud_b1_unit_testing</string>
+        <string>F-Spot_Cloud_b2_unit_test_coverage</string>
+        <string>F-Spot_Cloud_b3_static_analysis</string>
+        <string>F-Spot_Cloud_c1_integration_tests_j2ee</string>
+        <string>F-Spot_Cloud_c2_integration_tests_gae</string>
+        <string>F-Spot_Cloud_d1_selenium_tests_j2ee</string>
+        <string>F-Spot_Cloud_d2_selenium_tests_gae</string>
+        <string>F-Spot_Cloud_e1_installer_j2ee</string>
+        <string>F-Spot_Cloud_e2_installer_gae</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+    </listView>
   </views>
   <primaryView>Alle</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
   <label></label>
+  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
+    <excludeClientIPFromCrumb>true</excludeClientIPFromCrumb>
+    <PROXY__HEADER>X-Forwarded-For</PROXY__HEADER>
+  </crumbIssuer>
   <nodeProperties/>
   <globalNodeProperties>
     <hudson.slaves.EnvironmentVariablesNodeProperty>
@@ -45,11 +127,13 @@
           <default>
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
           </default>
-          <int>2</int>
+          <int>3</int>
+          <string></string>
+          <string></string>
+          <string>ANDROID_HOME</string>
+          <string>/home/jenkins/android-sdk-linux_x86/</string>
           <string>DISPLAY</string>
           <string>:0.0</string>
-          <string>JAVA_ARGS</string>
-          <string> -Xms256m -Xmx2048m</string>
         </tree-map>
       </envVars>
     </hudson.slaves.EnvironmentVariablesNodeProperty>
