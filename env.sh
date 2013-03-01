@@ -1,8 +1,7 @@
 # The first two variables are user-editable
 export YOUR_SECRET=VERY_GRADLE
 export GAE_APPLICATION_ID=jfspotcloud
-#export PATH=$HOME/gradle-1.0-milestone-8/bin:$HOME/apache-maven-3.0.4/bin:$PATH
-export PATH=$HOME/gradle-1.0/bin:$HOME/apache-maven-3.0.4/bin:$PATH
+export PATH=$HOME/gradle-1.1/bin:$HOME/apache-maven-3.0.4/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 function vt() {
@@ -33,12 +32,6 @@ alias reidea='g cleanIdea idea'
 alias mci='mvn clean install'
 alias rununinstaller='java -jar ~/FSpotCloud/Uninstaller/uninstaller.jar'
 alias sim='cd ~/fspotcloud.simplejpadao'
-function resume() {
-   mvn -Dfspotcloud.test.webdriver=fire -Dmaven.test.failure.ignore=false install -rf :$1;
-}
-function gRepl() {
-  find -type f -name build.gradle -exec sed -i -e "s/\"$1\"/libs.$2/g" {} \; ;
-}
 function g() {
   CMD="gradle --daemon $@";
   echo $CMD;
@@ -47,16 +40,6 @@ function g() {
 function unit_test_coverage() {
   MODULE=$1;
   (cd $MODULE && mvn clean cobertura:cobertura && x-www-browser target/site/cobertura/index.html);
-}
-alias totalbuild='time (build && gbuildall)'
-function bumpUpVersions() {
-  VERSION=$(grep version build.gradle |cut -d" " -f7);
-  NEXT_VERSION_NUMBER=$(( ${VERSION:6:2} + 1));
-  VERSION=${VERSION:1:8}
-  cd ~/fspotcloud;
-  sed -i -e "s/${VERSION}/0.12-${NEXT_VERSION_NUMBER}g/" build.gradle;
-  MVN_VERSION=$(grep 'version>0.12-' pom.xml|cut -c14-20);
-  find -name pom.xml -exec sed -i -e "s/${MVN_VERSION}/0.12-${NEXT_VERSION_NUMBER}/" {} \; ;
 }
 
 function shortcompile() {
@@ -67,8 +50,10 @@ function shortbuild() {
   g clean;
   shortcompile;
 }
-alias g2e='g gae-e2e:{clean,build}'
-alias j2e='g j2ee-e2e:{clean,build}'
+alias g2e='g gae-e2e:{clean,test}'
+function j2e(){
+(cd j2ee-e2e && g {clean,test})
+}
 function e2etesting_all() {
   g2e -Pall_tests=true && j2e -Pall_tests=true ;
 }
@@ -79,7 +64,8 @@ function e2etesting() {
 function deps () {
   g ${1}:dependencies
 }
-
+alias server_coverage='g -Pcoberture=true server:{clean,cobertura}; x-www-browser server/build/reports/cobertura/index/html'
+alias client_coverage='g -Pcoberture=true client:{clean,cobertura}; x-www-browser client/build/reports/cobertura/index/html'
 alias blob='cd ~/fspotcloud.simpleblobstore/'
 alias gmodel='g model-{api,jpa,jpa-gae,jpa-j2ee}:{clean,build}'
 alias compileAll='g compileJava -x :client:compileGwt'
@@ -93,3 +79,4 @@ alias ffbuild='time (compileAll && compileAllTests && shortcompile && g client:b
 alias release_build='time g clean build -Prelease=true -Pall_tests=true -Panalysis=true projectReport'
 alias startAr='cd ~/tools/apache-archiva-1.3.5/ && bin/archiva console'
 alias stanal='g -Panalysis=true projectReport jdepend{Main,Test} pmd{Main,Test} findbugs{Main,Test} checkstyle{Main,Test}'
+alias reload_env='source ~/fspotcloud.install/env.sh'
