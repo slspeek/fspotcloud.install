@@ -11,7 +11,7 @@ alias gb='g build'
 alias gcb='g clean build'
 alias gcl='g clean'
 alias cgradle='rm -rf ~/.gradle/ ~/fspotcloud/.gradle'
-alias vienv='vi ~/fspotcloud.install/env.sh'
+alias vienv='vim ~/fspotcloud.install/env.sh'
 alias status='hg status && hg outgoing ; hg identify'
 alias allstat='cd ~/fspotcloud.install && status ;cd ~/fspotcloud && status ; cd ~/botdispatch && status;cd ~/fspotcloud.simplejpadao/ && status ; cd ~/taskqueuedispatch/ && status'
 alias cleanall='cd ~/fspotcloud && mvn clean ; find -type d \( -name bin -or -name target -or -name runtime -or -name MODELJPA -or -name te-report \) -exec rm -rvf {} \;'
@@ -37,7 +37,7 @@ function g() {
   echo $CMD;
   $CMD;
 }
-function unit_test_coverage() {
+function mvn_unit_test_coverage() {
   MODULE=$1;
   (cd $MODULE && mvn clean cobertura:cobertura && x-www-browser target/site/cobertura/index.html);
 }
@@ -64,8 +64,11 @@ function e2etesting() {
 function deps () {
   g ${1}:dependencies
 }
-alias server_coverage='g -Pcoberture=true server:{clean,cobertura}; x-www-browser server/build/reports/cobertura/index/html'
-alias client_coverage='g -Pcoberture=true client:{clean,cobertura}; x-www-browser client/build/reports/cobertura/index/html'
+function vcober() {
+    x-www-browser $1/build/reports/cobertura/index.html;
+}
+alias server_coverage='g -Pcobertura=true server:clean serverUnittestCoverage; vcober server'
+alias client_coverage='g -Pcobertura=true client:clean clientUnittestCoverage -x client:compileGwt; vcober client'
 alias blob='cd ~/fspotcloud.simpleblobstore/'
 alias gmodel='g model-{api,jpa,jpa-gae,jpa-j2ee}:{clean,build}'
 alias compileAll='g compileJava -x :client:compileGwt'
