@@ -51,11 +51,14 @@ function shortbuild() {
   shortcompile;
 }
 alias g2e='g gae-e2e:{clean,test}'
+alias g2eall='g2e -Pall_tests=true'
+
 function j2e(){
-(cd j2ee-e2e && g {clean,test})
+(cd j2ee-e2e && g {clean,test} $@) && g j2ee-server-test:{clean,build}
 }
+alias j2eall='j2e -Pall_tests=true'
 function e2etesting_all() {
-  g2e -Pall_tests=true && j2e -Pall_tests=true ;
+  g2e -Pall_tests=true $@ && j2e -Pall_tests=true $@;
 }
 function e2etesting() {
   g2e && j2e;
@@ -69,6 +72,7 @@ function vcober() {
 }
 alias server_coverage='g -Pcobertura=true server:clean serverUnittestCoverage; vcober server'
 alias client_coverage='g -Pcobertura=true client:clean clientUnittestCoverage -x client:compileGwt; vcober client'
+alias keyboard_coverage='g -Pcobertura=true keyboard-action:clean keyboardactionUnittestCoverage -x keyboard-action:compileGwt; vcober keyboard-action'
 alias blob='cd ~/fspotcloud.simpleblobstore/'
 alias gmodel='g model-{api,jpa,jpa-gae,jpa-j2ee}:{clean,build}'
 alias compileAll='g compileJava -x :client:compileGwt'
