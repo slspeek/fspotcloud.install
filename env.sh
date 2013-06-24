@@ -73,6 +73,7 @@ function vcober() {
 alias server_coverage='g -Pcobertura=true server:clean serverUnittestCoverage; vcober server'
 alias client_coverage='g -Pcobertura=true client:clean clientUnittestCoverage -x client:compileGwt; vcober client'
 alias keyboard_coverage='g -Pcobertura=true keyboard-action:clean keyboardactionUnittestCoverage -x keyboard-action:compileGwt; vcober keyboard-action'
+alias rpc_coverage='g -Pcobertura=true rpc:clean rpcUnittestCoverage -x keyboard-action:compileGwt; vcober rpc'
 alias blob='cd ~/fspotcloud.simpleblobstore/'
 alias gmodel='g model-{api,jpa,jpa-gae,jpa-j2ee}:{clean,build}'
 alias compileAll='g compileJava -x :client:compileGwt'
