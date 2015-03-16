@@ -1,7 +1,7 @@
 # The first two variables are user-editable
 export YOUR_SECRET=VERY_GRADLE
 export GAE_APPLICATION_ID=jfspotcloud
-export PATH=$HOME/gradle-1.1/bin:$HOME/apache-maven-3.0.4/bin:$PATH
+export PATH=$HOME/gradle-2.2/bin:$HOME/apache-maven-3.2.5/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 function vt() {
