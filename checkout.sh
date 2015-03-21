@@ -1,16 +1,19 @@
 #!/bin/bash
 set -e
-HGCMD='hg clone --insecure'
+GITCMD='git clone'
 cd ~
 if [ ! -d ~/fspotcloud.simplejpadao ]; then
-	$HGCMD https://simplejpadao.fspotcloud.googlecode.com/hg/ fspotcloud.simplejpadao
+	$GITCMD git@github.com:slspeek/fspotcloud.simplejpadao.git 
 fi
-if [ ! -d ~/fspotcloud ]; then
-	$HGCMD https://javasrc.fspotcloud.googlecode.com/hg/ fspotcloud
-fi
+if [ ! -d ~/fspotcloud.simpleblobstore ]; then
+	$GITCMD git@github.com:slspeek/fspotcloud.simpleblobstore.git 
+fi 
 if [ ! -d ~/botdispatch ]; then
-	$HGCMD https://botdispatch.googlecode.com/hg/ botdispatch
+	$GITCMD git@github.com:slspeek/botdispatch.git 
 fi
 if [ ! -d ~/taskqueuedispatch ]; then
-	$HGCMD https://taskqueuedispatch.googlecode.com/hg/ taskqueuedispatch
+	$GITCMD git@github.com:slspeek/taskqueuedispatch.git 
+fi 
+if [ ! -d ~/fspotcloud ]; then
+	$GITCMD git@github.com:slspeek/fspotcloud.javasrc.git fspotcloud
 fi
