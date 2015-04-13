@@ -42,7 +42,7 @@ alias g2e='g gae-e2e:{clean,test}'
 alias g2eall='g2e -Pall_tests=true'
 
 function j2e(){
-(cd j2ee-e2e && g {clean,test} -x :client:compileGwt $@) && g -x :client:compileGwt j2ee-server-test:{clean,build};
+(cd j2ee-e2e && g {clean,test} -x :client:compileGwt $@ && g {clean,testFSpot} -x:client:comG $@) && g -x :client:compileGwt j2ee-server-test:{clean,build};
 }
 
 alias j2eall='j2e -Pall_tests=true'
@@ -75,6 +75,7 @@ alias itestj2e='cd ~/fspotcloud && g server-module-j2ee:{clean,test}'
 alias itestgae='cd ~/fspotcloud && g server-module-gae:{clean,test}'
 alias installers='g installer-{gae,peer,j2ee-server}:build'
 alias ffbuild='time (compileAll && compileAllTests && shortcompile && g client:build && e2etesting && installers)'
+alias buildall='time (compileAll && compileAllTests && shortcompile && g client:build && e2etesting_all -xcomG && installers)'
 alias release_build='time g clean build -Prelease=true -Pall_tests=true -Panalysis=true projectReport'
 alias startAr='cd ~/tools/apache-archiva-1.3.5/ && bin/archiva console'
 alias stanal='g -Panalysis=true projectReport jdepend{Main,Test} pmd{Main,Test} findbugs{Main,Test}'
