@@ -38,11 +38,11 @@ function shortbuild() {
 	shortcompile;
 }
 
-alias g2e='g gae-e2e:{clean,test}'
+alias g2e='g gae-e2e:clean && g -xcoG gae-e2e:build'
 alias g2eall='g2e -Pall_tests=true'
 
 function j2e(){
-(cd j2ee-e2e && g {clean,test} -x :client:compileGwt $@ && g {clean,testFSpot} -x:client:comG $@) && g -x :client:compileGwt j2ee-server-test:{clean,build};
+(cd j2ee-e2e && g {clean,test} -x :client:compileGwt $@ && g tomcatStop deleteDB testFSpot -x:client:comG $@) && g -x :client:compileGwt j2ee-server-test:{clean,build};
 }
 
 alias j2eall='j2e -Pall_tests=true'
@@ -80,3 +80,4 @@ alias release_build='time g clean build -Prelease=true -Pall_tests=true -Panalys
 alias startAr='cd ~/tools/apache-archiva-1.3.5/ && bin/archiva console'
 alias stanal='g -Panalysis=true projectReport jdepend{Main,Test} pmd{Main,Test} findbugs{Main,Test}'
 alias reload_env='source ~/fspotcloud.install/env.sh'
+alias vienv='vim ~/fspotcloud.install/env.sh; reload_env'
