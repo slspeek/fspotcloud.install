@@ -12,10 +12,10 @@ alias gcb='g clean build'
 alias gcl='g clean'
 alias cgradle='rm -rf ~/.gradle/ ~/fspotcloud/.gradle'
 alias crepo='rm -rf ~/.m2/repository/'
-alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/steven/Photos -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/photos.db  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
+alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/fspot/Photos -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/shotwell.db -Dshotwell=true  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
 alias localbot='cd botdispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -jar target/test-bot-*-jar-with-dependencies.jar '
 alias localprodpeer='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
-alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{gaeStop,gaeRun} -Pserver_daemon=false'
+alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{appengineStop,appengineRun} -Pserver_daemon=false'
 alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{tomcatStop,tomcatRun} -Pserver_daemon=false'
 alias gwt='g client:gwtDM'
 alias viewtestdb='sqlitebrowser $HOME/fspotcloud/peer/src/test/resources/photos.db'
@@ -38,7 +38,7 @@ function shortbuild() {
 	shortcompile;
 }
 
-alias g2e='g gae-e2e:clean && g -xcoG gae-e2e:build'
+alias g2e='g gae-e2e:clean && g -xcoG gae-e2e:cleanAppengineRun gae-e2e:build'
 alias g2eall='g2e -Pall_tests=true'
 
 function j2e(){
