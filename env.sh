@@ -1,7 +1,10 @@
 # The first two variables are user-editable
 export YOUR_SECRET=VERY_GRADLE
 export GAE_APPLICATION_ID=jfspotcloud
-export PATH=$HOME/gradle-2.2/bin:$HOME/apache-maven-3.2.5/bin:$PATH
+export PATH=$HOME/gradle-2.7/bin:$HOME/apache-maven-3.2.5/bin:$PATH
+#export PATH=$HOME/gradle-2.4/bin:$HOME/apache-maven-3.2.5/bin:$PATH
+#export PATH=$HOME/gradle-2.3/bin:$HOME/apache-maven-3.2.5/bin:$PATH
+#export PATH=$HOME/gradle-2.2/bin:$HOME/apache-maven-3.2.5/bin:$PATH
 export CDPATH=~/fspotcloud
 export YOUR_APPENGINE_DEPLOYMENT=${GAE_APPLICATION_ID}.appspot.com
 function vt() {
@@ -14,7 +17,7 @@ alias cgradle='rm -rf ~/.gradle/ ~/fspotcloud/.gradle'
 alias crepo='rm -rf ~/.m2/repository/'
 alias localpeer='cd peer/ && java -Dphoto.dir.override=file:/$HOME/fspotcloud/peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/fspot/Photos -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/fspotcloud/peer/src/test/resources/shotwell.db -Dshotwell=true  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
 alias localbot='cd botdispatch/test-bot/ && java -Dpause=3 -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -jar target/test-bot-*-jar-with-dependencies.jar '
-alias localprodpeer='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.config/f-spot/photos.db  -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
+alias localprodpeer='cd ~/fspotcloud/peer/ && java -Dpause=5 -Djava.util.logging.config.file=target/classes/logging.properties -Dendpoint=localhost:8080 -Dbot.secret=$YOUR_SECRET -Ddb=$HOME/.local/share/shotwell/data/photo.db -Dshotwell=true   -cp build/libs/peer-*.jar com.googlecode.fspotcloud.peer.Main'
 alias runlocal='cd ~/fspotcloud && g -x :client:compileGwt gae-e2e:{appengineStop,appengineRun} -Pserver_daemon=false'
 alias runlocalj2ee='cd ~/fspotcloud && g -x :client:compileGwt j2ee-e2e:{tomcatStop,tomcatRun} -Pserver_daemon=false'
 alias gwt='g client:gwtDM'
@@ -78,6 +81,6 @@ alias ffbuild='time (compileAll && compileAllTests && shortcompile && g client:b
 alias buildall='time (compileAll && compileAllTests && shortcompile && g client:build && e2etesting_all -xcomG && installers)'
 alias release_build='time g clean build -Prelease=true -Pall_tests=true -Panalysis=true projectReport'
 alias startAr='cd ~/tools/apache-archiva-1.3.5/ && bin/archiva console'
-alias stanal='g -Panalysis=true projectReport jdepend{Main,Test} pmd{Main,Test} findbugs{Main,Test}'
+alias stanal='g -Panalysis=true projectReport jdepend{Main,Test} pmd{Main,Test} findbugs{Main,Test} checkstyle{Main,Test}'
 alias reload_env='source ~/fspotcloud.install/env.sh'
 alias vienv='vim ~/fspotcloud.install/env.sh; reload_env'
