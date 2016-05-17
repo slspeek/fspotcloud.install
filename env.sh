@@ -26,6 +26,7 @@ alias reclipse='g cleanEclipse eclipse'
 alias reidea='g cleanIdea idea'
 alias rununinstaller='java -jar ~/FSpotCloud/Uninstaller/uninstaller.jar'
 alias sim='cd ~/fspotcloud.simplejpadao'
+
 function g() {
   CMD="gradle --daemon $@";
   echo $CMD;
@@ -41,7 +42,7 @@ function shortbuild() {
 	shortcompile;
 }
 
-alias g2e='g gae-e2e:clean && g -xcoG gae-e2e:cleanAppengineRun gae-e2e:build'
+alias g2e='g -xcomG gae-e2e:clean{AppengineRun,} gae-e2e:build'
 alias g2eall='g2e -Pall_tests=true'
 
 function j2e(){
@@ -77,8 +78,8 @@ alias vtgae='x-www-browser server-module-gae/build/reports/tests/index.html'
 alias itestj2e='cd ~/fspotcloud && g server-module-j2ee:{clean,test}'
 alias itestgae='cd ~/fspotcloud && g server-module-gae:{clean,test}'
 alias installers='g installer-{gae,peer,j2ee-server}:build'
-alias ffbuild='time (compileAll && compileAllTests && shortcompile && g client:build && e2etesting && installers)'
-alias buildall='time (compileAll && compileAllTests && shortcompile && g client:build && e2etesting_all -xcomG && installers)'
+alias ffbuild='time (compileAll && compileAllTests && shortcompile && g client:{build,install} && e2etesting && installers)'
+alias buildall='time (compileAll && compileAllTests && shortcompile && g client:{build,install} && e2etesting_all && installers)'
 alias release_build='time g clean build -Prelease=true -Pall_tests=true -Panalysis=true projectReport'
 alias startAr='cd ~/tools/apache-archiva-1.3.5/ && bin/archiva console'
 alias stanal='g -Panalysis=true projectReport jdepend{Main,Test} pmd{Main,Test} findbugs{Main,Test} checkstyle{Main,Test}'
